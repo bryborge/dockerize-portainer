@@ -3,3 +3,4 @@
 docker stop portainer
 docker rm portainer
 docker volume rm dockerizeportainer_portainer_data
+docker network rm dockerizeportainer_portainer_network

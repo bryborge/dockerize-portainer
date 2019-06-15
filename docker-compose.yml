@@ -11,6 +11,16 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    networks:
+      portainer_network:
+        ipv4_address: 172.18.0.10
 
 volumes:
   portainer_data:
+
+networks:
+  portainer_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
