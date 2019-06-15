@@ -35,3 +35,7 @@ you can utilize the bash scripts in the `bin/` directory.
     ```bash
     bash bin/destroy
     ```
+
+After running `bash bin/up` and everything has spun up,
+open a web browser and navigate to:
+`http://172.18.0.3/portainer`
