@@ -11,6 +11,29 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    networks:
+      portainer_network:
+        ipv4_address: 172.18.0.2
+
+  nginx:
+    container_name: portainer_nginx
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      portainer_network:
+        ipv4_address: 172.18.0.3
 
 volumes:
   portainer_data:
+
+networks:
+  portainer_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
