@@ -10,32 +10,39 @@ This project is primarily intended to deploy to a local server for home use.
 
 ## Requirements
 
-1.  [Docker](https://docs.docker.com/install/)
-1.  [Docker Compose](https://docs.docker.com/compose/install/)
+*   [Docker](https://docs.docker.com/install/)
+*   [Docker Compose](https://docs.docker.com/compose/install/)
+*   [nginx-proxy](https://github.com/sonofborge/dockerize-nginx-proxy)
 
-## How to Use
+## Up and Running
 
-To keep from having to type too much,
-you can utilize the bash scripts in the `bin/` directory.
-
-*   To spin up a basic Portainer instance:
+1.  Pull down the repo
 
     ```bash
-    bash bin/up
+    git clone https://github.com/sonofborge/dockerize-portainer.git portainer
     ```
 
-*   To spin down the Portainer instance:
+1.  Create and modify `.env` for your needs
 
     ```bash
-    bash bin/down
+    cp .env.example .env
     ```
 
-*   To completely eliminate the Portainer instance and all volumes:
+1.  Run Docker Compose:
 
     ```bash
-    bash bin/destroy
+    docker-compose up -d
     ```
 
-After running `bash bin/up` and everything has spun up,
+1.  To completely eliminate the Portainer instance and all associated volumes:
+
+    ```bash
+    bash scripts/destroy.sh
+    ```
+
+After running `docker-compose up -d` and everything has spun up,
 open a web browser and navigate to:
-`http://172.18.0.3/portainer`
+
+`http://<172.18.0.3:9000>`
+
+*Note that your reverse proxy IP might be different.*
