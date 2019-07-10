@@ -1,41 +1,34 @@
 # Dockerize Portainer
 
-This is a basic project that makes [Portainer](https://www.portainer.io/) deployment a little easier.
-
-## Disclaimer
-
-This is not a secure,
-production-ready project.
-This project is primarily intended to deploy to a local server for home use.
+This is a project that makes [Portainer](https://www.portainer.io/) deployment a little easier.
 
 ## Requirements
 
-1.  [Docker](https://docs.docker.com/install/)
-1.  [Docker Compose](https://docs.docker.com/compose/install/)
+*   [Docker](https://docs.docker.com/install/)
+*   [Docker Compose](https://docs.docker.com/compose/install/)
 
-## How to Use
+## Up and Running
 
-To keep from having to type too much,
-you can utilize the bash scripts in the `bin/` directory.
-
-*   To spin up a basic Portainer instance:
+1.  Pull down the repo.
 
     ```bash
-    bash bin/up
+    git clone https://github.com/sonofborge/dockerize-portainer.git portainer
     ```
 
-*   To spin down the Portainer instance:
+1.  Create and modify `.env` for your needs.
 
     ```bash
-    bash bin/down
+    cp .env.example .env
     ```
 
-*   To completely eliminate the Portainer instance and all volumes:
+1.  Run Docker Compose.
 
     ```bash
-    bash bin/destroy
+    docker-compose up -d
     ```
 
-After running `bash bin/up` and everything has spun up,
-open a web browser and navigate to:
-`http://172.18.0.3/portainer`
+1.  To completely eliminate the Portainer instance and all associated volumes.
+
+    ```bash
+    bash bin/destroy.sh
+    ```

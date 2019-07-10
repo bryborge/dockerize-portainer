@@ -1,6 +1,0 @@
-#!/bin/bash
-
-docker stop portainer portainer_nginx
-docker rm portainer portainer_nginx
-docker volume rm dockerize-portainer_portainer_data
-docker network rm dockerize-portainer_portainer_network

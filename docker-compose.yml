@@ -1,39 +1,37 @@
-version: '3'
+version: "3"
 
 services:
   portainer:
     command: -H unix:///var/run/docker.sock
     container_name: portainer
+    environment:
+      - TZ=${TZ}
     image: portainer/portainer
-    ports:
-      - 9000:9000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=portainer"
+      - "traefik.frontend.rule=Host:portainer.${DOMAINNAME}"
+      - "traefik.port=9000"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.SSLHost=example.com"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.frameDeny=true"
+    networks:
+      - traefik_proxy
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      portainer_network:
-        ipv4_address: 172.18.0.2
-
-  nginx:
-    container_name: portainer_nginx
-    image: nginx
-    ports:
-      - 80:80
-      - 443:443
-    restart: always
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      portainer_network:
-        ipv4_address: 172.18.0.3
+      - ./portainer/data:/data
 
 volumes:
-  portainer_data:
+  data:
 
 networks:
-  portainer_network:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.18.0.0/16
+  traefik_proxy:
+    external: true
