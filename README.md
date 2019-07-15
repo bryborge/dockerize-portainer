@@ -6,6 +6,7 @@ This is a project that makes [Portainer](https://www.portainer.io/) deployment a
 
 *   [Docker](https://docs.docker.com/install/)
 *   [Docker Compose](https://docs.docker.com/compose/install/)
+*   A linux box to deploy to ;)
 
 ## Up and Running
 
@@ -32,3 +33,7 @@ This is a project that makes [Portainer](https://www.portainer.io/) deployment a
     ```bash
     bash bin/destroy.sh
     ```
+
+If all went well,
+you should now be running Portainer inside a container behind your
+[traefik reverse proxy](https://github.com/sonofborge/dockerize-traefik).
