@@ -1,6 +1,7 @@
 # Dockerize Portainer
 
-This is a project that makes [Portainer](https://www.portainer.io/) deployment a little easier.
+This is a project that puts [Portainer](https://www.portainer.io/) in a container and is specifically designed to work with
+[this](https://github.com/sonofborge/dockerize-traefik) Traefik project.
 
 ## Requirements
 
@@ -36,4 +37,4 @@ This is a project that makes [Portainer](https://www.portainer.io/) deployment a
 
 If all went well,
 you should now be running Portainer inside a container behind your
-[traefik reverse proxy](https://github.com/sonofborge/dockerize-traefik).
+[Traefik reverse proxy](https://github.com/sonofborge/dockerize-traefik).
