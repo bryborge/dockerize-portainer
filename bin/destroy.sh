@@ -6,7 +6,12 @@ set -euo pipefail
 docker-compose down
 
 # remove volumes
-docker volume rm portainer_data
+if [ "$(docker volume ls | grep portainer)" ]; then
+  docker volume rm portainer_data
+else
+  echo "No Nextcloud volumes found. Skipping ..."
+  printf "\n"
+fi
 
 #
 # Remove local app folders and files?
