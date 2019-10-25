@@ -8,9 +8,6 @@ services:
     image: portainer/portainer
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.middlewares.custom.headers.browserXSSFilter=true"
       - "traefik.http.middlewares.custom.headers.contentTypeNosniff=true"
       - "traefik.http.middlewares.custom.headers.forceSTSHeader=true"
@@ -19,6 +16,9 @@ services:
       - "traefik.http.middlewares.custom.headers.stsIncludeSubdomains=true"
       - "traefik.http.middlewares.custom.headers.stsPreload=true"
       - "traefik.http.middlewares.custom.headers.stsSeconds=315360000"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
     networks:
       - traefik_proxy
     restart: always
