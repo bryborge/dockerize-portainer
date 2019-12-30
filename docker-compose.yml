@@ -5,7 +5,7 @@ services:
     container_name: portainer
     environment:
       - TZ=${TZ}
-    image: portainer/portainer
+    image: portainer/portainer:1.23.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.custom.headers.browserXSSFilter=true"
