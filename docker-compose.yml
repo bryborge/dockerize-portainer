@@ -5,7 +5,7 @@ services:
     container_name: portainer
     environment:
       - TZ=${TZ}
-    image: portainer/portainer:1.23.0
+    image: portainer/portainer:1.23.2
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.custom.headers.browserXSSFilter=true"
@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
     networks:
       - traefik_proxy
-    restart: always
+    restart: unless_stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/data
