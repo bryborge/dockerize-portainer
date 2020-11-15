@@ -22,9 +22,12 @@ services:
     networks:
       - traefik_proxy
     restart: unless-stopped
+    ports:
+      - "8000:8000/tcp"
+      - "9000:9000/tcp"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/data
+      - ./portainer_data:/data
 
 volumes:
   data:
