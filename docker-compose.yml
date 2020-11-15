@@ -5,7 +5,7 @@ services:
     container_name: portainer
     environment:
       - TZ=${TZ}
-    image: portainer/portainer:1.24.0
+    image: portainer/portainer-ce:2.0.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.custom.headers.browserXSSFilter=true"
@@ -19,15 +19,16 @@ services:
       - "traefik.http.routers.portainer.entrypoints=websecure"
       - "traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)"
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
+      - "traefik.http.services.portainer-svc.loadbalancer.server.port=9000"
     networks:
       - traefik_proxy
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/data
+      - ./portainer_data:/data
 
 volumes:
-  data:
+  portainer_data:
 
 networks:
   traefik_proxy:
