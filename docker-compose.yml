@@ -30,7 +30,7 @@ services:
       - ./portainer_data:/data
 
 volumes:
-  data:
+  portainer_data:
 
 networks:
   traefik_proxy:
